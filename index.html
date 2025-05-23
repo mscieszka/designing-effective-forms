@@ -59,21 +59,45 @@
                 <input type="text" class="form-control" id="zipCode" placeholder="Wpisz kod pocztowy" required>
             </div>
             <div class="mb-3">
-                <label for="shippingMethod" class="form-label">Rodzaj przesyłki</label>
-                <select class="form-select" id="shippingMethod" required>
-                    <option value="">Wybierz rodzaj przesyłki</option>
-                    <option value="DPD">DPD</option>
-                    <option value="InPost">InPost</option>
-                </select>
+                <label class="form-label">Rodzaj przesyłki</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="shippingMethod" id="dpd" value="DPD" required>
+                    <label class="form-check-label" for="dpd">
+                        <img src="img/dpd.svg" alt="DPD" class="me-2" style="width: 20px; vertical-align: middle;">
+                        DPD
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="shippingMethod" id="inpost" value="InPost" required>
+                    <label class="form-check-label" for="inpost">
+                        <img src="img/inpost.svg" alt="InPost" class="me-2" style="width: 20px; vertical-align: middle;">
+                        InPost
+                    </label>
+                </div>
             </div>
             <div class="mb-3">
-                <label for="paymentMethod" class="form-label">Rodzaj płatności</label>
-                <select class="form-select" id="paymentMethod" required>
-                    <option value="">Wybierz rodzaj płatności</option>
-                    <option value="karta">Karta</option>
-                    <option value="blik">BLIK</option>
-                    <option value="pośrednik">Pośrednik płatności</option>
-                </select>
+                <label class="form-label">Rodzaj płatności</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="blik" value="blik" required>
+                    <label class="form-check-label" for="blik">
+                        <img src="img/blik.svg" alt="BLIK" class="me-2" style="width: 20px; vertical-align: middle;">
+                        BLIK
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="card" value="karta" required>
+                    <label class="form-check-label" for="card">
+                        <img src="img/card.svg" alt="Karta" class="me-2" style="width: 20px; vertical-align: middle;">
+                        Karta
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="intermediary" value="pośrednik" required>
+                    <label class="form-check-label" for="intermediary">
+                        <img src="https://tpay.com/img/banners/logo-tpay-50x25.svg" alt="Pośrednik płatności" class="me-2" style="width: 20px; vertical-align: middle;">
+                        Pośrednik płatności
+                    </label>
+                </div>
             </div>
 
             <!-- Dodatkowe pola, np. dane do faktury -->

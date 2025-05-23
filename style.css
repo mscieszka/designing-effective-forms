@@ -1,3 +1,9 @@
 .modal {
     background: #c6d0ff7a;
 }
+
+.form-check-label img {
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
