@@ -37,16 +37,17 @@
                 </select>
             </div>
             <div class="row mb-3">
-                <label for="phoneNumber" class="form-label">Numer telefonu komórkowego</label>
-                <div class="input-group">
-                    <select class="form-select" id="countryCode" aria-label="Wybierz numer kierunkowy">
-                        <option selected>Wybierz...</option>
+                <div class="col-md-4">
+                    <label for="countryCode" class="form-label">Numer kierunkowy</label>
+                    <select class="form-select" id="countryCode" required>
+                        <option value="">Wybierz...</option>
                         <option value="+48">+48 (Polska)</option>
                         <option value="+1">+1 (Stany Zjednoczone)</option>
-                        <!-- Dodaj więcej opcji, jeśli jest to potrzebne -->
                     </select>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="Wpisz numer komórkowy"
-                        required>
+                </div>
+                <div class="col-md-8">
+                    <label for="phoneNumber" class="form-label">Numer telefonu</label>
+                    <input type="text" class="form-control" id="phoneNumber" placeholder="Wpisz numer" required>
                 </div>
             </div>
             <div class="mb-3">
