@@ -32,6 +32,7 @@ async function fetchAndFillCountries() {
             itemSelectText: '',
             shouldSort: false,
         });
+
         countryInput.addEventListener('change', (e) => {
             const selectedCountry = e.target.value;
             if (selectedCountry) {
@@ -64,6 +65,7 @@ function getCountryByIP() {
             console.error('Błąd pobierania danych z serwera GeoJS:', error);
         });
 }
+
 function getCountryCode(countryName) {
     const apiUrl = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
 
@@ -75,17 +77,21 @@ function getCountryCode(countryName) {
             return response.json();
         })
         .then(data => {
-            const code = data[0].idd.root; // Only the root
-            const optionExists = Array.from(countryCodeInput.options).some(opt => opt.value === code);
+            const idd = data[0].idd;
+            const root = idd.root || "";
+            const suffixes = idd.suffixes || [];
+            const fullCode = suffixes.length > 0 ? root + suffixes[0] : root;
+
+            const optionExists = Array.from(countryCodeInput.options).some(opt => opt.value === fullCode);
 
             if (optionExists) {
-                countryCodeInput.value = code;
+                countryCodeInput.value = fullCode;
             } else {
                 const newOption = document.createElement("option");
-                newOption.value = code;
-                newOption.textContent = `${code} (${countryName})`;
+                newOption.value = fullCode;
+                newOption.textContent = `${fullCode} (${countryName})`;
                 countryCodeInput.appendChild(newOption);
-                countryCodeInput.value = code;
+                countryCodeInput.value = fullCode;
             }
         })
         .catch(error => {
@@ -93,10 +99,37 @@ function getCountryCode(countryName) {
         });
 }
 
-(() => {
+(async () => {
     // nasłuchiwania na zdarzenie kliknięcia myszką
     document.addEventListener('click', handleClick);
 
-    fetchAndFillCountries();
+    await fetchAndFillCountries();
     getCountryByIP();
 })()
+
+document.querySelectorAll('.custom-radio-group').forEach(group => {
+    const radios = group.querySelectorAll('input[type="radio"]');
+    group.addEventListener('keydown', e => {
+        const current = document.activeElement;
+        if (!current || current.tagName !== 'LABEL') return;
+        let idx = Array.from(group.querySelectorAll('label')).indexOf(current);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            let next = (idx + 1) % radios.length;
+            radios[next].focus();
+            group.querySelectorAll('label')[next].focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            let prev = (idx - 1 + radios.length) % radios.length;
+            radios[prev].focus();
+            group.querySelectorAll('label')[prev].focus();
+        } else if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            radios[idx].checked = true;
+        }
+    });
+    group.querySelectorAll('label').forEach((label, i) => {
+        label.addEventListener('focus', () => radios[i].focus());
+        label.addEventListener('click', () => radios[i].checked = true);
+    });
+});

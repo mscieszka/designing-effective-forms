@@ -16,121 +16,151 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Uzupełnij formularz</h1>
-        <form id="form">
-            <div class="mb-3">
-                <label for="firstName" class="form-label">Imię</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Wpisz imię" required>
-            </div>
-            <div class="mb-3">
-                <label for="lastName" class="form-label">Nazwisko</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Wpisz nazwisko" required>
-            </div>
-            <div class="mb-3">
-                <label for="street" class="form-label">Ulica</label>
-                <input type="text" class="form-control" id="street" placeholder="Wpisz ulicę" required>
-            </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Kraj</label>
-                <select class="form-select" id="country" required>
-                    <option value="">Wybierz kraj</option>
-                    <!-- Options will be filled by JavaScript -->
-                </select>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <label for="countryCode" class="form-label">Numer kierunkowy</label>
-                    <select class="form-select" id="countryCode" required>
-                        <option value="">Wybierz...</option>
+<div class="container">
+    <h1>Uzupełnij formularz</h1>
+    <form id="form">
+        <div class="form-section">
+            <fieldset>
+                <legend class="section-title">Dane osobowe</legend>
+                <div class="input-group mb-3">
+                    <div class="form-floating flex-grow-1">
+                        <input type="text" class="form-control" id="firstName" placeholder="Imię" minlength="2" required>
+                        <label for="firstName">Imię</label>
+                    </div>
+                    <div class="form-floating flex-grow-1">
+                        <input type="text" class="form-control" id="lastName" placeholder="Nazwisko" required>
+                        <label for="lastName">Nazwisko</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="form-floating flex-grow-2">
+                        <input type="text" class="form-control" id="street" placeholder="Ulica" required>
+                        <label for="street">Ulica</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="form-floating flex-grow-2">
+                        <input type="text" class="form-control" id="city" placeholder="Miasto" required>
+                        <label for="city">Miasto</label>
+                    </div>
+                    <div class="form-floating flex-grow-1">
+                        <input type="text" class="form-control" id="zipCode" placeholder="Kod pocztowy" pattern="[0-9]{2}-[0-9]{3}" required>
+                        <label for="zipCode">Kod pocztowy</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="country">Kraj</label>
+                    <select class="form-select" id="country" required>
+                        <option value="">Wybierz kraj</option>
+                        <option value="PL">Polska</option>
+                        <option value="DE">Niemcy</option>
+                        <option value="GB">Wielka Brytania</option>
+                        <option value="US">USA</option>
                     </select>
                 </div>
-                <div class="col-md-8">
-                    <label for="phoneNumber" class="form-label">Numer telefonu</label>
-                    <input type="text" class="form-control" id="phoneNumber" placeholder="Wpisz numer" required>
+                <div class="input-group mb-3">
+                    <div class="form-floating flex-grow-1">
+                        <select class="form-select" id="countryCode" required>
+                            <option value="">Kod</option>
+                            <option value="+48">+48 (Polska)</option>
+                            <option value="+49">+49 (Niemcy)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+1">+1 (USA)</option>
+                        </select>
+                        <label for="countryCode">Numer kierunkowy</label>
+                    </div>
+                    <div class="form-floating flex-grow-2">
+                        <input type="text" class="form-control" id="phoneNumber" placeholder="Numer telefonu" pattern="[0-9]{9}" required>
+                        <label for="phoneNumber">Numer telefonu</label>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">Miasto</label>
-                <input type="text" class="form-control" id="city" placeholder="Wpisz miasto" required>
-            </div>
-            <div class="mb-3">
-                <label for="zipCode" class="form-label">Kod pocztowy</label>
-                <input type="text" class="form-control" id="zipCode" placeholder="Wpisz kod pocztowy" required>
-            </div>
-            <div class="mb-3" role="radiogroup" aria-labelledby="shipping-label">
-                <label id="shipping-label" class="form-label">Rodzaj przesyłki</label>
-                <div class="form-check custom-radio-icon">
-                    <input class="form-check-input" type="radio" name="shippingMethod" id="dpd" value="DPD" required aria-checked="false">
-                    <label class="form-check-label" for="dpd">
-                        <img src="img/dpd.svg" alt="DPD logo" />
-                        DPD
-                    </label>
+                <div class="input-group mb-3">
+                    <div class="form-floating flex-grow-2">
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <label for="exampleInputEmail1">Adres email</label>
+                    </div>
                 </div>
-                <div class="form-check custom-radio-icon">
-                    <input class="form-check-input" type="radio" name="shippingMethod" id="inpost" value="InPost" required aria-checked="false">
-                    <label class="form-check-label" for="inpost">
-                        <img src="img/inpost.svg" alt="InPost logo" />
-                        InPost
-                    </label>
+            </fieldset>
+        </div>
+        <div class="form-section">
+            <fieldset>
+                <legend class="section-title">Dostawa i płatność</legend>
+                <div class="mb-3" role="radiogroup" aria-labelledby="shipping-label">
+                    <label id="shipping-label" class="form-label">Rodzaj przesyłki</label>
+                    <div class="custom-radio-group">
+                        <div class="form-check custom-radio-icon">
+                            <input checked class="form-check-input" type="radio" name="shippingMethod" id="dpd" value="DPD" required>
+                            <label class="form-check-label" for="dpd" tabindex="0">
+                                <img src="img/dpd.svg" alt="DPD logo" />
+                                DPD
+                            </label>
+                        </div>
+                        <div class="form-check custom-radio-icon">
+                            <input class="form-check-input" type="radio" name="shippingMethod" id="inpost" value="InPost" required>
+                            <label class="form-check-label" for="inpost" tabindex="0">
+                                <img src="img/inpost.svg" alt="InPost logo" />
+                                InPost
+                            </label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3" role="radiogroup" aria-labelledby="payment-label">
-                <label id="payment-label" class="form-label">Rodzaj płatności</label>
-                <div class="form-check custom-radio-icon">
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="blik" value="blik" required aria-checked="false">
-                    <label class="form-check-label" for="blik">
-                        <img src="img/blik.svg" alt="BLIK logo" />
-                        BLIK
-                    </label>
+                <div class="mb-3" role="radiogroup" aria-labelledby="payment-label">
+                    <label id="payment-label" class="form-label">Rodzaj płatności</label>
+                    <div class="custom-radio-group">
+                        <div class="form-check custom-radio-icon">
+                            <input checked class="form-check-input" type="radio" name="paymentMethod" id="blik" value="blik" required>
+                            <label class="form-check-label" for="blik" tabindex="0">
+                                <img src="img/blik.svg" alt="BLIK logo" />
+                                BLIK
+                            </label>
+                        </div>
+                        <div class="form-check custom-radio-icon">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="card" value="karta" required>
+                            <label class="form-check-label" for="card" tabindex="0">
+                                <img src="img/card.svg" alt="Karta logo" />
+                                Karta
+                            </label>
+                        </div>
+                        <div class="form-check custom-radio-icon">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="intermediary" value="pośrednik" required>
+                            <label class="form-check-label" for="intermediary" tabindex="0">
+                                <img src="https://tpay.com/img/banners/logo-tpay-50x25.svg" alt="Pośrednik płatności logo" />
+                                Pośrednik płatności
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check custom-radio-icon">
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="card" value="karta" required aria-checked="false">
-                    <label class="form-check-label" for="card">
-                        <img src="img/card.svg" alt="Karta logo" />
-                        Karta
-                    </label>
+            </fieldset>
+        </div>
+        <div class="form-section">
+            <fieldset>
+                <legend class="section-title">Dane firmowe</legend>
+                <div class="input-group mb-3">
+                    <div class="form-check align-items-center d-flex">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="vatUE">
+                            <span class="custom-checkbox-indicator"></span>
+                            VAT UE
+                        </label>
+                    </div>
+                    <div class="form-floating flex-grow-2">
+                        <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp" placeholder="VAT Number">
+                        <label for="vatNumber">VAT Number</label>
+                    </div>
                 </div>
-                <div class="form-check custom-radio-icon">
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="intermediary" value="pośrednik" required aria-checked="false">
-                    <label class="form-check-label" for="intermediary">
-                        <img src="https://tpay.com/img/banners/logo-tpay-50x25.svg" alt="Pośrednik płatności logo" />
-                        Pośrednik płatności
-                    </label>
-                </div>
-            </div>
-            <!-- Dodatkowe pola, np. dane do faktury -->
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="vatUE">
-                <label class="form-check-label" for="vatUE">VAT UE</label>
-            </div>
-            <div class="mb-3">
-                <label for="vatNumber" class="form-label">VAT Number</label>
-                <input type="text" class="form-control" id="vatNumber" aria-describedby="vatHelp">
-                <div id="vatHelp" class="form-text">Kod kraju państwa członkowskiego i seria cyfr unikalnych dla tego
-                    podmiotu gospodarczego.</div>
-            </div>
 
-            <div class="mb-3">
-                <label for="invoiceData" class="form-label">Dane do faktury</label>
-                <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
-            </div>
+                <div class="mb-3">
+                    <label for="invoiceData" class="form-label">Dane do faktury</label>
+                    <textarea class="form-control" id="invoiceData" rows="3" placeholder="Wpisz dane do faktury"></textarea>
+                </div>
+            </fieldset>
+        </div>
+        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#form-feedback-modal">submit</button>
+    </form>
+</div>
 
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#form-feedback-modal">submit</button>
-        </form>
-    </div>
 
-
-    <!-- Raport kliknięć -->
+<!-- Raport kliknięć -->
     <div class="modal fade" id="form-feedback-modal" tabindex="-1" aria-labelledby="raportModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
